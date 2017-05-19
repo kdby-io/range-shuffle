@@ -1,6 +1,6 @@
 {
   "name": "range-shuffle",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Unduplicated and reversible big random integer generator",
   "main": "lib/index.js",
   "scripts": {
@@ -24,11 +24,6 @@
     "url": "https://github.com/pueue/range-shuffle/issues"
   },
   "homepage": "https://github.com/pueue/range-shuffle#readme",
-  "babel": {
-    "presets": [
-      "env"
-    ]
-  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
