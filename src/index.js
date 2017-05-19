@@ -19,7 +19,7 @@ export class Shuffler {
   }
 
   _makeDivisible(a, b) {
-    return this._makeDivisible(a, b);
+    return a.divide(b).times(b);
   }
 
   _extendedEuclidX(a, b) {
