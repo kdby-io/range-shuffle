@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "babel-node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "prepublish": "babel src --out-dir lib"
   },
   "repository": {
@@ -27,7 +28,11 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
-    "babel-preset-env": "^1.4.0"
+    "babel-jest": "^20.0.3",
+    "babel-preset-env": "^1.4.0",
+    "jest": "^20.0.3",
+    "lodash": "^4.17.4",
+    "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
     "big-integer": "^1.6.22"
