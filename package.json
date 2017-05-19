@@ -1,0 +1,40 @@
+{
+  "name": "range-shuffle",
+  "version": "0.0.1",
+  "description": "Unduplicated and reversible big random integer generator",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "babel src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pueue/range-shuffle.git"
+  },
+  "keywords": [
+    "lcg",
+    "random",
+    "shuffle",
+    "range"
+  ],
+  "author": "pueue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pueue/range-shuffle/issues"
+  },
+  "homepage": "https://github.com/pueue/range-shuffle#readme",
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-preset-env": "^1.4.0"
+  },
+  "dependencies": {
+    "big-integer": "^1.6.22"
+  }
+}
