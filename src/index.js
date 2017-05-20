@@ -1,33 +1,43 @@
-import Big from 'big-integer';
 import {
+  Dough,
+  validateFactors,
   validateInput,
   convertForResult,
-  extendedEuclidX,
 } from './utils';
 
 
 export default class Shuffler {
-  constructor({ a, c, m }) {
-    validateInput({ a, c, m });
+  constructor(factors) {
+    validateFactors(factors);
+
+    const { MULTIPLIER, INCREMENT, MODULUS } = factors;
     this.factors = {
-      A: Big(a),
-      C: Big(c),
-      M: Big(m),
+      MULTIPLIER: Dough(MULTIPLIER),
+      INCREMENT: Dough(INCREMENT),
+      MODULUS: Dough(MODULUS),
     };
   }
 
-  LCG(before) {
-    const { A, C, M } = this.factors;
-    const after = A.times(Big(before)).add(C).mod(M);
+  // after = ((A * before) + C) % M
+  LCG(int) {
+    validateInput(int, this.factors);
+    const { MULTIPLIER, INCREMENT, MODULUS } = this.factors;
+    const before = Dough(int);
+
+    const after = MULTIPLIER.times(before).add(INCREMENT).mod(MODULUS);
     return convertForResult(after);
   }
 
-  reverseLCG(after) {
-    const { A, C, M } = this.factors;
-    const inverse = extendedEuclidX(A, M);
-    let before = Big(after).minus(C).times(inverse).mod(M);
-    if (before.compare(0) === -1) {
-      before = before.add(M);
+  // before = ((after - C) * inverse) % M
+  reverseLCG(int) {
+    validateInput(int, this.factors);
+    const { MULTIPLIER, INCREMENT, MODULUS } = this.factors;
+    const INVERSE = MULTIPLIER.modInv(MODULUS);
+    const after = Dough(int);
+
+    let before = after.minus(INCREMENT).times(INVERSE).mod(MODULUS);
+    if (before < 0) {
+      before = before.add(MODULUS);
     }
     return convertForResult(before);
   }

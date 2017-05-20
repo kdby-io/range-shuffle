@@ -11,9 +11,9 @@ describe('small integer', () => {
 
   describe('with Number inputs', () => {
     const rs = new Shuffler({
-      a: MULTIPLIER,
-      c: INCREMENT,
-      m: MODULUS,
+      MULTIPLIER,
+      INCREMENT,
+      MODULUS,
     });
 
     describe('random', () => {
@@ -46,11 +46,12 @@ describe('small integer', () => {
     });
   });
 
+
   describe('with String inputs', () => {
     const rs = new Shuffler({
-      a: MULTIPLIER.toString(),
-      c: INCREMENT.toString(),
-      m: MODULUS.toString(),
+      MULTIPLIER: MULTIPLIER.toString(),
+      INCREMENT: INCREMENT.toString(),
+      MODULUS: MODULUS.toString(),
     });
 
     describe('random', () => {
@@ -84,6 +85,7 @@ describe('small integer', () => {
   });
 });
 
+
 describe('large integer', () => {
   describe('with Number inputs', () => {
     const [MULTIPLIER, INCREMENT, MODULUS] = [
@@ -96,15 +98,16 @@ describe('large integer', () => {
       const setupNewShuffler = () => {
         // eslint-disable-next-line no-new
         new Shuffler({
-          a: MULTIPLIER,
-          c: INCREMENT,
-          m: MODULUS,
+          MULTIPLIER,
+          INCREMENT,
+          MODULUS,
         });
       };
 
       expect(setupNewShuffler).toThrow('Use String type for large integer.');
     });
   });
+
 
   describe('with String inputs', () => {
     const [MULTIPLIER, INCREMENT, MODULUS] = [
@@ -114,9 +117,9 @@ describe('large integer', () => {
     ];
 
     const rs = new Shuffler({
-      a: MULTIPLIER.toString(),
-      c: INCREMENT.toString(),
-      m: MODULUS,
+      MULTIPLIER: MULTIPLIER.toString(),
+      INCREMENT: INCREMENT.toString(),
+      MODULUS: MODULUS.toString(),
     });
 
     describe('random', () => {
