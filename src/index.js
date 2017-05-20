@@ -14,9 +14,9 @@ export class Shuffler {
   _validateInput(inputs) {
     _.map(inputs, input => {
       if (Big(input) < 0)
-        throw 'All inputs must be positive';
+        throw `${input} is not a positive integer.`;
       if (typeof input === 'number' && !Number.isSafeInteger(input))
-        throw 'Use String type for large number';
+        throw 'Use String type for large integer.';
     });
   }
 

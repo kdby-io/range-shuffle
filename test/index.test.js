@@ -101,7 +101,7 @@ describe('large integer', () => {
         });
       };
 
-      expect(setupNewShuffler).toThrow('Use String type for large number');
+      expect(setupNewShuffler).toThrow('Use String type for large integer.');
     });
   });
 
