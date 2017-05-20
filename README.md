@@ -13,7 +13,9 @@ npm install --save range-shuffle
 ### Usage
 
 ```javascript
-import Shuffler from 'range-shuffle';
+const Shuffler = require('range-shuffle').default;
+// or
+import { Shuffler } from 'range-shuffle';
 
 const rs = new Shuffler({
   MULTIPLIER: 7, // it must be a prime number
