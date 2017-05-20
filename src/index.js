@@ -1,17 +1,17 @@
 import {
   Dough,
-  validateFactors,
+  validateConstants,
   validateInput,
   convertForResult,
 } from './utils';
 
 
 export default class Shuffler {
-  constructor(factors) {
-    validateFactors(factors);
+  constructor(constants) {
+    validateConstants(constants);
 
-    const { MULTIPLIER, INCREMENT, MODULUS } = factors;
-    this.factors = {
+    const { MULTIPLIER, INCREMENT, MODULUS } = constants;
+    this.constants = {
       MULTIPLIER: Dough(MULTIPLIER),
       INCREMENT: Dough(INCREMENT),
       MODULUS: Dough(MODULUS),
@@ -20,8 +20,8 @@ export default class Shuffler {
 
   // after = ((A * before) + C) % M
   LCG(int) {
-    validateInput(int, this.factors);
-    const { MULTIPLIER, INCREMENT, MODULUS } = this.factors;
+    validateInput(int, this.constants);
+    const { MULTIPLIER, INCREMENT, MODULUS } = this.constants;
     const before = Dough(int);
 
     const after = MULTIPLIER.times(before).add(INCREMENT).mod(MODULUS);
@@ -30,8 +30,8 @@ export default class Shuffler {
 
   // before = ((after - C) * inverse) % M
   reverseLCG(int) {
-    validateInput(int, this.factors);
-    const { MULTIPLIER, INCREMENT, MODULUS } = this.factors;
+    validateInput(int, this.constants);
+    const { MULTIPLIER, INCREMENT, MODULUS } = this.constants;
     const INVERSE = MULTIPLIER.modInv(MODULUS);
     const after = Dough(int);
 

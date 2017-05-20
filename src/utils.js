@@ -9,9 +9,9 @@ const _validateInteger = (int) => {
   }
 };
 
-const validateFactors = ({ MULTIPLIER, INCREMENT, MODULUS }) => {
+const validateConstants = ({ MULTIPLIER, INCREMENT, MODULUS }) => {
   [MULTIPLIER, INCREMENT, MODULUS].forEach(
-    factor => _validateInteger(factor)
+    constant => _validateInteger(constant)
   );
 
   if (!Dough(MULTIPLIER).isPrime()) {
@@ -19,8 +19,8 @@ const validateFactors = ({ MULTIPLIER, INCREMENT, MODULUS }) => {
   }
 };
 
-const validateInput = (int, factors) => {
-  const { MODULUS } = factors;
+const validateInput = (int, constants) => {
+  const { MODULUS } = constants;
   _validateInteger(int);
 
   if (Dough(int).compare(MODULUS) !== -1) {
@@ -37,7 +37,7 @@ const convertForResult = int =>
 
 export {
   Dough,
-  validateFactors,
+  validateConstants,
   validateInput,
   convertForResult,
 };
