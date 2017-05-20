@@ -1,6 +1,6 @@
 import Big from 'big-integer';
 import _ from 'lodash';
-import { Shuffler } from '../src';
+import Shuffler from '../src';
 
 describe('small integer', () => {
   const [MULTIPLIER, INCREMENT, MODULUS] = [
@@ -17,20 +17,20 @@ describe('small integer', () => {
     });
 
     describe('random', () => {
-      test('lcg()', () => {
+      test('LCG()', () => {
         const plain = _.random(MODULUS - 1);
         const cipher = (MULTIPLIER * plain + INCREMENT) % MODULUS;
 
-        expect(rs.lcg(plain)).toEqual(cipher);
+        expect(rs.LCG(plain)).toEqual(cipher);
       });
     });
 
     describe('reversible', () => {
-      test('r_lcg()', () => {
+      test('reverseLCG()', () => {
         const plain = _.random(MODULUS - 1);
-        const cipher = rs.lcg(plain);
+        const cipher = rs.LCG(plain);
 
-        expect(rs.r_lcg(cipher)).toEqual(plain);
+        expect(rs.reverseLCG(cipher)).toEqual(plain);
       });
     });
 
@@ -38,7 +38,7 @@ describe('small integer', () => {
       test(`scan between 0 to ${MODULUS}`, () => {
         const domino = _.times(MODULUS, _.constant(0));
         for (const plain of _.range(MODULUS)) {
-          domino[rs.lcg(plain)] = 1;
+          domino[rs.LCG(plain)] = 1;
         }
 
         expect(domino).toEqual(_.times(MODULUS, _.constant(1)));
@@ -54,20 +54,20 @@ describe('small integer', () => {
     });
 
     describe('random', () => {
-      test('lcg()', () => {
+      test('LCG()', () => {
         const plain = _.random(MODULUS - 1).toString();
         const cipher = (MULTIPLIER * plain + INCREMENT) % MODULUS;
 
-        expect(rs.lcg(plain)).toEqual(cipher);
+        expect(rs.LCG(plain)).toEqual(cipher);
       });
     });
 
     describe('reversible', () => {
-      test('r_lcg()', () => {
+      test('reverseLCG()', () => {
         const plain = _.random(MODULUS - 1).toString();
-        const cipher = rs.lcg(plain);
+        const cipher = rs.LCG(plain);
 
-        expect(rs.r_lcg(cipher).toString()).toEqual(plain);
+        expect(rs.reverseLCG(cipher).toString()).toEqual(plain);
       });
     });
 
@@ -75,7 +75,7 @@ describe('small integer', () => {
       test(`scan between 0 to ${MODULUS}`, () => {
         const domino = _.times(MODULUS, _.constant(0));
         for (const plain of _.range(MODULUS)) {
-          domino[rs.lcg(plain)] = 1;
+          domino[rs.LCG(plain)] = 1;
         }
 
         expect(domino).toEqual(_.times(MODULUS, _.constant(1)));
@@ -119,7 +119,7 @@ describe('large integer', () => {
     });
 
     describe('random', () => {
-      test('lcg()', () => {
+      test('LCG()', () => {
         const plain = Big.randBetween(0, Big(MODULUS)).toString();
         const cipher = Big(MULTIPLIER).times(
             Big(plain)
@@ -129,16 +129,16 @@ describe('large integer', () => {
             Big(MODULUS)
           ).toString();
 
-        expect(rs.lcg(plain)).toEqual(cipher);
+        expect(rs.LCG(plain)).toEqual(cipher);
       });
     });
 
     describe('reversible', () => {
-      test('r_lcg()', () => {
+      test('reverseLCG()', () => {
         const plain = Big.randBetween(0, Big(MODULUS)).toString();
-        const cipher = rs.lcg(plain);
+        const cipher = rs.LCG(plain);
 
-        expect(rs.r_lcg(cipher)).toEqual(plain);
+        expect(rs.reverseLCG(cipher)).toEqual(plain);
       });
     });
   });
