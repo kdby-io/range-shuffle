@@ -1,8 +1,7 @@
 import Big from 'big-integer';
-import _ from 'lodash';
 
-const validateInput = (inputs) => {
-  _.mapValues(inputs, (input) => {
+const validateInput = ({ a, c, m }) => {
+  [a, c, m].forEach((input) => {
     if (Big(input) < 0) {
       throw new Error(`${input} is not a positive integer.`);
     }
@@ -10,10 +9,18 @@ const validateInput = (inputs) => {
       throw new Error('Use String type for large integer.');
     }
   });
+
+  if (!Big(a).isPrime()) {
+    throw new Error(`${a} is not a prime number`);
+  }
 };
 
 const convertForResult = int =>
-  (Number.isSafeInteger(int.toJSNumber()) ? int.toJSNumber() : int.toString());
+  (
+    Number.isSafeInteger(int.toJSNumber()) ?
+    int.toJSNumber() :
+    int.toString()
+  );
 
 const extendedEuclidX = (a, b) =>
   // eslint-disable-next-line no-use-before-define
@@ -23,7 +30,9 @@ const extendedEuclidY = (a, b) =>
   (
     b.eq(0) ?
     Big(0) :
-    extendedEuclidX(b, a.mod(b)).minus(extendedEuclidY(b, a.mod(b)).times(a.divide(b)))
+    extendedEuclidX(b, a.mod(b))
+    .minus(extendedEuclidY(b, a.mod(b))
+    .times(a.divide(b)))
   );
 
 export {

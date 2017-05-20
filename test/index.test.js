@@ -6,7 +6,7 @@ describe('small integer', () => {
   const [MULTIPLIER, INCREMENT, MODULUS] = [
     13, // prime number
     5,
-    100
+    100,
   ];
 
   describe('with Number inputs', () => {
@@ -19,7 +19,7 @@ describe('small integer', () => {
     describe('random', () => {
       test('LCG()', () => {
         const plain = _.random(MODULUS - 1);
-        const cipher = (MULTIPLIER * plain + INCREMENT) % MODULUS;
+        const cipher = ((MULTIPLIER * plain) + INCREMENT) % MODULUS;
 
         expect(rs.LCG(plain)).toEqual(cipher);
       });
@@ -37,9 +37,9 @@ describe('small integer', () => {
     describe('unduplicated', () => {
       test(`scan between 0 to ${MODULUS}`, () => {
         const domino = _.times(MODULUS, _.constant(0));
-        for (const plain of _.range(MODULUS)) {
-          domino[rs.LCG(plain)] = 1;
-        }
+        _.range(MODULUS).forEach(
+          plain => (domino[rs.LCG(plain)] = 1),
+        );
 
         expect(domino).toEqual(_.times(MODULUS, _.constant(1)));
       });
@@ -56,7 +56,7 @@ describe('small integer', () => {
     describe('random', () => {
       test('LCG()', () => {
         const plain = _.random(MODULUS - 1).toString();
-        const cipher = (MULTIPLIER * plain + INCREMENT) % MODULUS;
+        const cipher = ((MULTIPLIER * plain) + INCREMENT) % MODULUS;
 
         expect(rs.LCG(plain)).toEqual(cipher);
       });
@@ -74,9 +74,9 @@ describe('small integer', () => {
     describe('unduplicated', () => {
       test(`scan between 0 to ${MODULUS}`, () => {
         const domino = _.times(MODULUS, _.constant(0));
-        for (const plain of _.range(MODULUS)) {
-          domino[rs.LCG(plain)] = 1;
-        }
+        _.range(MODULUS).forEach(
+          plain => (domino[rs.LCG(plain)] = 1),
+        );
 
         expect(domino).toEqual(_.times(MODULUS, _.constant(1)));
       });
@@ -89,11 +89,12 @@ describe('large integer', () => {
     const [MULTIPLIER, INCREMENT, MODULUS] = [
       13, // prime number
       5,
-      9007199254740992 // Number.MAX_SAFE_INTEGER + 1
+      9007199254740992, // Number.MAX_SAFE_INTEGER + 1
     ];
 
     test('throw error', () => {
       const setupNewShuffler = () => {
+        // eslint-disable-next-line no-new
         new Shuffler({
           a: MULTIPLIER,
           c: INCREMENT,
@@ -109,7 +110,7 @@ describe('large integer', () => {
     const [MULTIPLIER, INCREMENT, MODULUS] = [
       13, // prime number
       5,
-      '9007199254740999999999999999999992' // over Number.MAX_SAFE_INTEGER
+      '9007199254740999999999999999999992', // over Number.MAX_SAFE_INTEGER
     ];
 
     const rs = new Shuffler({
@@ -121,13 +122,11 @@ describe('large integer', () => {
     describe('random', () => {
       test('LCG()', () => {
         const plain = Big.randBetween(0, Big(MODULUS)).toString();
-        const cipher = Big(MULTIPLIER).times(
-            Big(plain)
-          ).add(
-            Big(INCREMENT)
-          ).mod(
-            Big(MODULUS)
-          ).toString();
+        const cipher = Big(MULTIPLIER)
+          .times(Big(plain))
+          .add(Big(INCREMENT))
+          .mod(Big(MODULUS))
+          .toString();
 
         expect(rs.LCG(plain)).toEqual(cipher);
       });
@@ -142,4 +141,4 @@ describe('large integer', () => {
       });
     });
   });
-})
+});
