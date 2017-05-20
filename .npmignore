@@ -1,4 +1,4 @@
 .babelrc
-docs/
+.travis.yml
 test/
 src/
