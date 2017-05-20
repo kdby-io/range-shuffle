@@ -1,21 +1,39 @@
 import Big from 'big-integer';
+import _ from 'lodash';
 
 export class Shuffler {
   constructor({ a, c, m }) {
-    [this.A, this.C, this.M] = [a, c, m];
+    this._validateInput([a, c, m]);
+    this.factors = {
+      A: Big(a),
+      C: Big(c),
+      M: Big(m),
+    };
   }
 
+  _validateInput(inputs) {
+    _.map(inputs, input => {
+      if (Big(input) < 0)
+        throw 'All inputs must be positive';
+      if (typeof input === 'number' && !Number.isSafeInteger(input))
+        throw 'Use String type for large number';
+    });
+  }
+
+
   lcg(before) {
-    const after = this.A.times(before).add(this.C).mod(this.M);
-    return after;
+    const {A, C, M} = this.factors;
+    const after = A.times(Big(before)).add(C).mod(M);
+    return this._convertForResult(after);
   }
 
   r_lcg(after) {
-    const inverse = this._extendedEuclidX(this.A, this.M);
-    let before = after.minus(this.C).times(inverse).mod(this.M);
+    const {A, C, M} = this.factors;
+    const inverse = this._extendedEuclidX(A, M);
+    let before = Big(after).minus(C).times(inverse).mod(M);
     if (before.compare(0) === -1)
-      before = before.add(this.M);
-    return before;
+      before = before.add(M);
+    return this._convertForResult(before);
   }
 
   _makeDivisible(a, b) {
@@ -40,5 +58,9 @@ export class Shuffler {
       ).minus(this._extendedEuclidY(
         b, a.minus(this._makeDivisible(a, b))
       ).times(a.divide(b)));
+  }
+
+  _convertForResult(int) {
+    return Number.isSafeInteger(int.toJSNumber()) ? int.toJSNumber() : int.toString();
   }
 }
