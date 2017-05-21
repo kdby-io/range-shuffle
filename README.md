@@ -24,13 +24,13 @@ import Shuffler from 'range-shuffle';
 
 const rs = new Shuffler({
   MULTIPLIER: 7, // it must be a prime number
-  INCREMENT: 6,
+  INCREMENT: 9,
   MODULUS: 10,
 });
 
 const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const shuffled = array.map(int => rs.LCG(int));
-// [6, 3, 0, 7, 4, 1, 8, 5, 2, 9]
+// [9, 6, 3, 0, 7, 4, 1, 8, 5, 2]
 const reversed = shuffled.map(int => rs.reverseLCG(int));
 // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
