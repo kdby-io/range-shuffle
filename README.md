@@ -13,9 +13,9 @@ npm install --save range-shuffle
 ### Usage
 
 ```javascript
-const Shuffler = require('range-shuffle').default;
+const Shuffler = require('range-shuffle');
 // or
-import { Shuffler } from 'range-shuffle';
+import Shuffler from 'range-shuffle';
 
 const rs = new Shuffler({
   MULTIPLIER: 7, // it must be a prime number
@@ -34,7 +34,8 @@ const reversed = shuffled.map(int => rs.reverseLCG(int));
 
 ## Note
 
-All constants & method arguments can be both `Number` and `String` type. If you want to use a large number over `Number.MAX_SAFE_INTEGER`(9007199254740991), use a `String` type input like `.LCG('9999999999999999')`.
+All constants & method arguments can be both `Number` and `String` type.  
+If you want to use a large number over `Number.MAX_SAFE_INTEGER`(9007199254740991), use a `String` type input like `.LCG('9999999999999999')`.
 
 ## API
 
