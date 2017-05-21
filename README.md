@@ -1,6 +1,11 @@
 # Range-Shuffle [![Build Status](https://img.shields.io/travis/pueue/range-shuffle.svg?style=flat-square)](https://travis-ci.org/pueue/range-shuffle) [![Version](https://img.shields.io/npm/v/range-shuffle.svg?style=flat-square)](https://www.npmjs.com/package/range-shuffle) [![Download](https://img.shields.io/npm/dt/range-shuffle.svg?style=flat-square)](https://www.npmjs.com/package/range-shuffle)
 
-A unduplicated & reversible random integer generator.
+Wide-range integer shuffler.
+
+## Goals
+
+- No array
+- Reversible
 
 ## Getting Started
 

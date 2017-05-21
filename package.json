@@ -1,7 +1,7 @@
 {
   "name": "range-shuffle",
   "version": "0.1.2",
-  "description": "A unduplicated and reversible big random integer generator",
+  "description": "Wide-range integer shuffler",
   "main": "lib/index.js",
   "scripts": {
     "dev": "babel-node src/index.js",
