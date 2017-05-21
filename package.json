@@ -1,6 +1,6 @@
 {
   "name": "range-shuffle",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A unduplicated and reversible big random integer generator",
   "main": "lib/index.js",
   "scripts": {
