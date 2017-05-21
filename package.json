@@ -40,5 +40,9 @@
   },
   "dependencies": {
     "big-integer": "^1.6.22"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }

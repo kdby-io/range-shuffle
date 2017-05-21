@@ -53,4 +53,4 @@ Performs linear congruential generating based on constants.
 
 ### `.reverseLCG(integer)`
 
-Restore linear congruential generating based on constants.
+Restores linear congruential generating based on constants.
