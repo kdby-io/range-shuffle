@@ -15,7 +15,7 @@ const validateConstants = ({ MULTIPLIER, INCREMENT, MODULUS }) => {
   );
 
   if (!Dough(MULTIPLIER).isPrime()) {
-    throw new Error(`${MULTIPLIER} is not a prime number`);
+    throw new Error(`${MULTIPLIER} is not a prime number.`);
   }
 };
 
@@ -24,7 +24,7 @@ const validateInput = (int, constants) => {
   _validateInteger(int);
 
   if (Dough(int).compare(MODULUS) !== -1) {
-    throw new Error('A input integer must be less than MODULUS');
+    throw new Error('A input integer must be less than MODULUS.');
   }
 };
 

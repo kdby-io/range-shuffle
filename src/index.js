@@ -36,9 +36,8 @@ export default class Shuffler {
     const after = Dough(int);
 
     let before = after.minus(INCREMENT).times(INVERSE).mod(MODULUS);
-    if (before < 0) {
-      before = before.add(MODULUS);
-    }
+    if (before < 0) before = before.add(MODULUS);
+
     return convertForResult(before);
   }
 }
