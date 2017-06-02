@@ -19,8 +19,10 @@ describe('with a Number small integer', () => {
     test('LCG()', () => {
       const plain = _.random(MODULUS - 1);
       const cipher = ((MULTIPLIER * plain) + INCREMENT) % MODULUS;
+      const result = rs.LCG(plain);
 
-      expect(rs.LCG(plain)).toEqual(cipher);
+      expect(typeof result).toEqual('number');
+      expect(result).toEqual(cipher);
     });
   });
 
@@ -28,8 +30,10 @@ describe('with a Number small integer', () => {
     test('reverseLCG()', () => {
       const plain = _.random(MODULUS - 1);
       const cipher = rs.LCG(plain);
+      const result = rs.reverseLCG(cipher);
 
-      expect(rs.reverseLCG(cipher)).toEqual(plain);
+      expect(typeof result).toEqual('number');
+      expect(result).toEqual(plain);
     });
   });
 
@@ -62,8 +66,10 @@ describe('with a String small integer', () => {
     test('LCG()', () => {
       const plain = _.random(MODULUS - 1).toString();
       const cipher = ((MULTIPLIER * plain) + INCREMENT) % MODULUS;
+      const result = rs.LCG(plain);
 
-      expect(rs.LCG(plain)).toEqual(cipher);
+      expect(typeof result).toEqual('number');
+      expect(result).toEqual(cipher);
     });
   });
 
@@ -71,8 +77,10 @@ describe('with a String small integer', () => {
     test('reverseLCG()', () => {
       const plain = _.random(MODULUS - 1).toString();
       const cipher = rs.LCG(plain);
+      const result = rs.reverseLCG(cipher);
 
-      expect(rs.reverseLCG(cipher).toString()).toEqual(plain);
+      expect(typeof result).toEqual('number');
+      expect(result.toString()).toEqual(plain);
     });
   });
 
@@ -118,23 +126,29 @@ describe('with a String large integer', () => {
 
   describe('random', () => {
     test('LCG()', () => {
-      const plain = Big.randBetween(0, Big(MODULUS)).toString();
+      const plain = Big.randBetween(Number.MAX_SAFE_INTEGER, Big(MODULUS))
+        .toString();
       const cipher = Big(MULTIPLIER)
         .times(Big(plain))
         .add(Big(INCREMENT))
         .mod(Big(MODULUS))
         .toString();
+      const result = rs.LCG(plain);
 
-      expect(rs.LCG(plain)).toEqual(cipher);
+      expect(result).toEqual(cipher);
+      expect(typeof result).toEqual('string');
     });
   });
 
   describe('reversible', () => {
     test('reverseLCG()', () => {
-      const plain = Big.randBetween(0, Big(MODULUS)).toString();
+      const plain = Big.randBetween(Number.MAX_SAFE_INTEGER, Big(MODULUS))
+        .toString();
       const cipher = rs.LCG(plain);
+      const result = rs.reverseLCG(cipher);
 
-      expect(rs.reverseLCG(cipher)).toEqual(plain);
+      expect(result).toEqual(plain);
+      expect(typeof result).toEqual('string');
     });
   });
 });

@@ -37,6 +37,8 @@ const reversed = shuffled.map(int => rs.reverseLCG(int));
 
 ## Principle
 
+[Linear congruential generator](https://en.wikipedia.org/wiki/Linear_congruential_generator)
+
 ## Note
 
 All constants & method arguments can be both `Number` and `String` type.  
