@@ -1,4 +1,4 @@
-# Range-Shuffle [![Build Status](https://img.shields.io/travis/pueue/range-shuffle.svg?style=flat-square)](https://travis-ci.org/pueue/range-shuffle) [![Version](https://img.shields.io/npm/v/range-shuffle.svg?style=flat-square)](https://www.npmjs.com/package/range-shuffle) [![Download](https://img.shields.io/npm/dt/range-shuffle.svg?style=flat-square)](https://www.npmjs.com/package/range-shuffle)
+# Range-Shuffle [![Build Status](https://img.shields.io/travis/pueue/range-shuffle.svg?style=flat-square)](https://travis-ci.org/pueue/range-shuffle) [![Version](https://img.shields.io/npm/v/range-shuffle.svg?style=flat-square)](https://www.npmjs.com/package/range-shuffle) [![Download](https://img.shields.io/npm/dt/range-shuffle.svg?style=flat-square)](https://www.npmjs.com/package/range-shuffle) [![Greenkeeper badge](https://badges.greenkeeper.io/pueue/range-shuffle.svg)](https://greenkeeper.io/)
 
 Wide-range integer shuffler.
 
