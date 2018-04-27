@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - "7"
+  - "10"
 notifications:
   email: false
 before_install: yarn global add greenkeeper-lockfile@1
