@@ -39,7 +39,7 @@
     "regenerator-runtime": "^0.12.0"
   },
   "dependencies": {
-    "big-integer": "^1.6.22"
+    "big-integer": "^1.6.45"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
